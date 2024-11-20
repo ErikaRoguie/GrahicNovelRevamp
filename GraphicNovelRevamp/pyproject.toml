@@ -1,0 +1,20 @@
+[project]
+name = "repl-nix-graphicnovelrevamp"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.11"
+dependencies = [
+    "email-validator>=2.2.0",
+    "flask>=3.1.0",
+    "flask-sqlalchemy>=3.1.1",
+    "openai>=1.54.5",
+    "psycopg2-binary>=2.9.10",
+    "flask-login>=0.6.3",
+    "opencv-python>=4.10.0.84",
+    "pillow>=11.0.0",
+    "beautifulsoup4>=4.12.3",
+    "lxml>=5.3.0",
+    "pypdf2>=3.0.1",
+    "ebooklib>=0.18",
+    "requests",
+]

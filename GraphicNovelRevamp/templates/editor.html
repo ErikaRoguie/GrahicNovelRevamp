@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-9">
+        <div class="comic-container">
+            <canvas id="comic-canvas" class="comic-canvas"></canvas>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="tool-panel">
+            <h5>Comic Details</h5>
+            <div class="mb-3">
+                <input type="text" class="form-control" id="comic-title" placeholder="Comic Title">
+            </div>
+            <div class="mb-3">
+                <label for="text-input" class="form-label">Story Text</label>
+                <textarea 
+                    class="form-control comic-text-input" 
+                    id="text-input" 
+                    rows="8" 
+                    placeholder="Write your story here. Use natural language to describe scenes. The AI will automatically convert your text into comic panels.&#10;&#10;Example: Spider-Man swings through the city. Suddenly, he spots a robbery in progress. With lightning speed, he drops down to confront the criminals."
+                ></textarea>
+                <div class="form-text text-muted">
+                    Tip: Add scene transitions like 'meanwhile', 'suddenly', or 'later' to create new panels
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="text-file" class="form-label">Upload Text File</label>
+                <input type="file" class="form-control" id="text-file" accept=".txt">
+            </div>
+            <div class="mb-3">
+                <label for="video-file" class="form-label">Upload Video</label>
+                <input type="file" class="form-control" id="video-file" accept="video/*">
+                <div class="progress mt-2 d-none" id="upload-progress">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-marvel" role="progressbar" style="width: 0%"></div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="story-url" class="form-label">Import Story from URL</label>
+                <div class="input-group">
+                    <input type="url" class="form-control" id="story-url" placeholder="Enter URL">
+                    <button class="btn btn-marvel" type="button" id="import-story">Import Story</button>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label class="form-label">Popular Story Sources</label>
+                <div class="list-group">
+                    <a href="https://www.gutenberg.org/" target="_blank" rel="noopener noreferrer" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        Project Gutenberg
+                        <span class="badge bg-marvel">Free Books</span>
+                    </a>
+                    <a href="https://archive.org/details/texts" target="_blank" rel="noopener noreferrer" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        Internet Archive
+                        <span class="badge bg-marvel">Digital Library</span>
+                    </a>
+                    <a href="https://archiveofourown.org/" target="_blank" rel="noopener noreferrer" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        Archive of Our Own
+                        <span class="badge bg-marvel">Fanfiction</span>
+                    </a>
+                    <a href="https://www.fanfiction.net/" target="_blank" rel="noopener noreferrer" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        FanFiction.net
+                        <span class="badge bg-marvel">Fanfiction</span>
+                    </a>
+                </div>
+                <div class="form-text text-muted mt-2">
+                    All external content sources open in new tabs. Please respect copyright and usage rights.
+                </div>
+            </div>
+        </div>
+
+        <div class="tool-panel">
+            <h5>Panel Layout</h5>
+            <div class="btn-group w-100 mb-3">
+                <button class="btn btn-secondary layout-btn" data-layout="2x2">2x2 Grid</button>
+                <button class="btn btn-secondary layout-btn" data-layout="3x2">3x2 Grid</button>
+            </div>
+            <button class="btn btn-marvel w-100" id="add-panel">Add Single Panel</button>
+        </div>
+
+        <div class="tool-panel">
+            <h5>Backgrounds</h5>
+            <div class="mb-3">
+                <label for="background-upload" class="form-label">Upload Background</label>
+                <input type="file" class="form-control" id="background-upload" accept="image/*,.svg">
+            </div>
+            <div id="background-library" class="background-library"></div>
+        </div>
+
+        <div class="tool-panel">
+            <button class="btn btn-marvel w-100" id="save-comic">Save Comic</button>
+            <button class="btn btn-secondary w-100 mt-2" id="export-image">Export as Image</button>
+        </div>
+    </div>
+</div>
+
+<script src="/static/js/panel_layout.js"></script>
+<script src="/static/js/text_analyzer.js"></script>
+<script src="/static/js/comic_editor.js"></script>
+{% endblock %}
